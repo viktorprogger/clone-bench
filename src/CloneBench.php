@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use PhpBench\Attributes\Iterations;
 use PhpBench\Attributes\Revs;
 
 final class CloneBench
@@ -17,7 +18,8 @@ final class CloneBench
             ->withProp('test');
     }
 
-    #[Revs(100000)]
+    #[Revs(1000000)]
+    #[Iterations(10)]
     public function benchMutable(): void
     {
         $mutable = new Mutable();
@@ -30,7 +32,8 @@ final class CloneBench
         $mutable->setProp('test');
     }
 
-    #[Revs(100000)]
+    #[Revs(1000000)]
+    #[Iterations(10)]
     public function benchImmutable(): void
     {
         (new Immutable())
@@ -43,7 +46,8 @@ final class CloneBench
             ->withProp('test');
     }
 
-    #[Revs(100000)]
+    #[Revs(1000000)]
+    #[Iterations(10)]
     public function benchRR(): void
     {
         $this->template->withProp('test');
